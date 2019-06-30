@@ -19,7 +19,7 @@ int interpret(FILE* file){
   while(code<source_len){
     char c=source[code];
     if(c=='>' && (++mem)==MEM_LEN) mem=0;
-    else if(c=='<' && !(--mem)) mem=MEM_LEN-1;
+    else if(c=='<' && !(mem--)) mem=MEM_LEN-1;
     else if(c=='.') printf("%c",memory[mem]);
     else if(c==',') memory[mem]=fgetc(stdin);
     else if(c=='+') memory[mem]++;
@@ -39,7 +39,7 @@ int interpret(FILE* file){
         if(source[code]=='[') close--;
       }
     }else if(!(c=='\t' || c=='\n' || c==' ' || c=='<' || c=='>' || c=='[' || c==']')){
-      fprintf(stderr,"wtf is this? (%i)\n",c);
+      fprintf(stderr,"wtf is this? (%c)\n",c);
       except(file,source,1);
     }
     code++;
