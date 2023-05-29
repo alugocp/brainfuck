@@ -11,6 +11,10 @@ int interpret(FILE* file){
   char ch;
   int mem=0,code=0;
   char memory[MEM_LEN+1];
+
+  for (int i = 0; i < MEM_LEN+1; i++)
+    memory[i]=0;
+    
   fseek(file,0,SEEK_END);
   int source_len=ftell(file);
   char* source=(char*)malloc(source_len);
